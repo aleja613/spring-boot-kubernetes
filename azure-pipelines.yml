@@ -2,7 +2,6 @@ pool:
   vmImage: ubuntu-latest
 
 
-
 steps:
 - task: Maven@4
   inputs:
@@ -15,8 +14,6 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
 
-
-
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'ServiceConnection'
@@ -24,8 +21,6 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'aleja613_spring-boot-kubernetes'
     projectName: 'spring-boot-kubernetes'
-
-
 
 - task: Maven@4
   inputs:
