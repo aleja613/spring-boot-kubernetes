@@ -43,4 +43,4 @@ steps:
   inputs:
     projectName: 'spring-boot-kubernetes'
     scanPath: '$(Build.SourcesDirectory)/target'
-    format: 'xML'
+    format: 'XML'
