@@ -42,5 +42,5 @@ steps:
 - task: dependency-check-build-task@6
   inputs:
     projectName: 'spring-boot-kubernetes'
-    scanPath: '$(Build.SourcesDirectory)/build/libs'
+    scanPath: '$(Build.SourcesDirectory)/target'
     format: 'HTML'
