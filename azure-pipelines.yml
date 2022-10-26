@@ -4,16 +4,16 @@ pool:
 
 
 steps:
-
-- task: Gradle@3
+- task: Maven@4
   inputs:
-    gradleWrapperFile: 'gradlew'
-    tasks: 'build'
+    mavenPomFile: 'pom.xml'
     publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
     sonarQubeRunAnalysis: false
-    spotBugsAnalysis: false
 
 
 
@@ -27,18 +27,17 @@ steps:
 
 
 
-- task: Gradle@3
+- task: Maven@4
   inputs:
-    gradleWrapperFile: 'gradlew'
-    tasks: 'sonarqube'
+    mavenPomFile: 'pom.xml'
     publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
     sonarQubeRunAnalysis: true
-    sqGradlePluginVersionChoice: 'specify'
-    sonarQubeGradlePluginVersion: '3.3'
-    spotBugsAnalysis: false
-
+    sqMavenPluginVersionChoice: 'latest'
 
 - task: dependency-check-build-task@6
   inputs:
