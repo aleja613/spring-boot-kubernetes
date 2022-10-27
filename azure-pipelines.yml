@@ -68,8 +68,9 @@ stages:
     - script: |
         echo "Archivo de reporte"
         echo "se encuentra en $(Build.SourcesDirectory)/Reportes/dependencyCheckReport.xml"
+        echo "se verifica existencia del reprote en folder"
         ls -al $(Build.SourcesDirectory)/Reportes
-        datos=($(grep -oP '(?<=CONFIDENCE>)[^<]+' "$(Build.SourcesDirectory)/Reportes/dependencyCheckReport.xml"))
+        datos=($(grep -oP '(?<=CONFIDENCE>)[^<]+' "$(Build.SourcesDirectory)/Reportes/dependency-check-report.xml"))
         for i in ${!datos[*]}
         do
           echo "$i" "${datos[$i]}"
