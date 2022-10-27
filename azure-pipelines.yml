@@ -78,7 +78,8 @@ stages:
         done
         echo "----------------------largo-------------------"
         size=${#datos}
-        echo size 
+        echo "$size"
+
       displayName: Script, revisa si existe vulnerabilidad
 
 
