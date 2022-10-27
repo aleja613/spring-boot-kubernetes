@@ -2,7 +2,7 @@ import javax.crypto.Cipher;
 import java.security.NoSuchAlgorithmException;
 import javax.crypto.NoSuchPaddingException;
 
-public class test_vulnerabity {
+public class test_vulnerabiity {
 
     public static void main(String[] args) {
       try
