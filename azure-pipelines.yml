@@ -70,7 +70,7 @@ stages:
         echo "se encuentra en $(Build.SourcesDirectory)/Reportes/dependencyCheckReport.xml"
         echo "se verifica existencia del reporte en directorio"
         ls -al $(Build.SourcesDirectory)/Reportes
-        datos=($(grep -oP '(?<=evidence confidence>)[^<]+' "$(Build.SourcesDirectory)/Reportes/dependency-check-report.xml") | grep -c 'HEIGH | HEIGHEST')
+        datos=($(grep -oP '(?<=evidence confidence>)[^<]+' "$(Build.SourcesDirectory)/Reportes/dependency-check-report.xml"))
         echo $datos
         echo "----------------------largo-------------------"
         size=${#datos}
