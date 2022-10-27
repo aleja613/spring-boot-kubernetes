@@ -22,12 +22,8 @@ public class ConfigMapPodInjectionProperties {
 }
 
 
-import java.io.IOException;
-import javax.servlet.http.HttpServletRequest;
-
-public void runUnsafe(HttpServletRequest request) throws IOException {
-  String cmd = request.getParameter("command");
-  String arg = request.getParameter("arg");
-
-  Runtime.getRuntime().exec(cmd+" "+arg); // Noncompliant
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+  String json = "{\"key\":\""+req.getParameter("value")+"\"}";
+  FileOutputStream fos = new FileOutputStream("output.json");
+  fos.write(json.getBytes(Charset.forName("UTF-8")));  // Noncompliant
 }
