@@ -68,6 +68,7 @@ stages:
     - script: |
         echo "Archivo de reporte"
         echo "se encuentra en $(Build.SourcesDirectory)/Reportes/dependencyCheckReport.xml"
+        ls -al $(Build.SourcesDirectory)/Reportes
         datos=($(grep -oP '(?<=CONFIDENCE>)[^<]+' "$(Build.SourcesDirectory)/Reportes/dependencyCheckReport.xml"))
         for i in ${!datos[*]}
         do
