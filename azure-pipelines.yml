@@ -41,6 +41,7 @@ stages:
       inputs:
         SonarCloud: 'ServiceConnection'
         organization: 'aleja613'
+      displayName: Error, se encontro Vulnerabilidad
 
 
 
