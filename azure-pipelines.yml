@@ -6,7 +6,6 @@ stages:
   displayName: Build
   jobs:
   - job: Job
-
     steps:
     - task: Maven@4
       inputs:
