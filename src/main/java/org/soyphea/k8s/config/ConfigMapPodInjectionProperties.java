@@ -21,6 +21,7 @@ public class ConfigMapPodInjectionProperties {
     String password = "admin";
 }
 
+
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
