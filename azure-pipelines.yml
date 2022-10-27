@@ -71,7 +71,7 @@ stages:
         echo "se encuentra en $(Build.SourcesDirectory)/Reportes/dependencyCheckReport.xml"
         echo "se verifica existencia del reporte en directorio"
         ls -al $(Build.SourcesDirectory)/Reportes
-        existe=$(grep  'confidence="HIGH' $(Build.SourcesDirectory)/dependency-check-report.xml | tr '<>' '\n'  | grep confidence | grep  'confidence="HIGH' | grep ^evidence | wc -l)          
+        existe=$(grep  'confidence="HIGH' $(Build.SourcesDirectory)/Reportes/dependency-check-report.xml | tr '<>' '\n'  | grep confidence | grep  'confidence="HIGH' | grep ^evidence | wc -l)          
           if [ $existe -gt 0 ];
           then 
             echo $existe "se encuentran vulnerabilidades Altas"            
