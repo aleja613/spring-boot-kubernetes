@@ -74,10 +74,12 @@ stages:
         existe=$(grep 'confidence="HIGH' $(Build.SourcesDirectory)/Reportes/dependency-check-report.xml | tr '<>' '\n'  | grep confidence | grep  'confidence="HIGH' | grep ^evidence | wc -l)          
         if [ $existe -gt 0 ];
         then 
-          echo "se encuentran vulnerabilidades Altas"            
-          exit 1;
+          echo "Se detectan vulnerabilidades Altas"            
+          #exit 1;
+        else:
+          echo "Bien!, no detectan vulnerabilidades"
         fi;
-      displayName: Script, revisa dependencyCheckla vulnerabilidad
+      displayName: Script, revisa reporte
 
 
 - stage: DAST
