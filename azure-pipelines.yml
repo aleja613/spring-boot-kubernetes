@@ -40,16 +40,24 @@ stages:
     - task: sonarcloud-buildbreaker@2
       inputs:
         SonarCloud: 'ServiceConnection'
-        organization: 'aleja613'
-      displayName: Error, se encontro Vulnerabilidad
-
-
+        organization: 'aleja613'      
 
 - stage: SCA
   displayName: SCA
   jobs:
   - job: Job
     steps:
+    - task: Maven@4
+      inputs:
+        mavenPomFile: 'pom.xml'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
+    
     - task: dependency-check-build-task@6
       inputs:
         projectName: 'spring-boot-kubernetes'
@@ -57,3 +65,25 @@ stages:
         format: 'XML'
         reportsDirectory: '$(Build.SourcesDirectory)/Reports'
         reportFilename: 'dependencyCheckReport.xml'
+    - script: |
+        echo "Archivo de reprote"
+        echo "se encuentra en $(Build.SourcesDirectory)/Reports/dependencyCheckReport.xml"
+
+
+- stage: DAST
+  displayName: DAST
+  jobs:
+  - job: Job
+    steps:
+    - task: Maven@4
+      inputs:
+        mavenPomFile: 'pom.xml'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
+    
+    
