@@ -43,6 +43,8 @@ stages:
         projectName: 'spring-boot-kubernetes'
         scanPath: '$(Build.SourcesDirectory)/target'
         format: 'XML'
+        reportsDirectory: '$(Build.SourcesDirectory)/Reports'
+        reportFilename: 'dependencyCheckReport.xml'
 
 - stage: DAST
   displayName: DAST
