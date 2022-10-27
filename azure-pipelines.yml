@@ -40,7 +40,8 @@ stages:
     - task: sonarcloud-buildbreaker@2
       inputs:
         SonarCloud: 'ServiceConnection'
-        organization: 'aleja613'      
+        organization: 'aleja613'
+          
 
 - stage: SCA
   displayName: SCA
@@ -67,6 +68,12 @@ stages:
     - script: |
         echo "Archivo de reporte"
         echo "se encuentra en $(Build.SourcesDirectory)/Reportes/dependencyCheckReport.xml"
+        datos=($(grep -oP '(?<=CONFIDENCE>)[^<]+' "$(Build.SourcesDirectory)/Reportes/dependencyCheckReport.xml"))
+        for i in ${!datos[*]}
+        do
+          echo "$i" "${datos[$i]}"
+         
+        done
       displayName: Script, revisa si existe vulnerabilidad
 
 
