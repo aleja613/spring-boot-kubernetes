@@ -68,7 +68,7 @@ stages:
     - script: |
         echo "Archivo de reporte"
         echo "se encuentra en $(Build.SourcesDirectory)/Reportes/dependencyCheckReport.xml"
-        echo "se verifica existencia del reprote en folder"
+        echo "se verifica existencia del reporte en directorio"
         ls -al $(Build.SourcesDirectory)/Reportes
         datos=($(grep -oP '(?<=confidence>)[^<]+' "$(Build.SourcesDirectory)/Reportes/dependency-check-report.xml"))
         
