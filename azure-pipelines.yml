@@ -2,12 +2,11 @@ pool:
   vmImage: ubuntu-latest
 
 stages:
-- stage: build
+- stage: SAST
   displayName: Build
   jobs:
-  - job: Build
-    pool:
-      name: Default
+  - job: Job
+
     steps:
     - task: Maven@4
       inputs:
