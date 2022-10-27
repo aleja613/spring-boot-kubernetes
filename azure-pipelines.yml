@@ -43,3 +43,45 @@ stages:
         projectName: 'spring-boot-kubernetes'
         scanPath: '$(Build.SourcesDirectory)/target'
         format: 'XML'
+
+- stage: DAST
+  displayName: Build
+  jobs:
+  - job: JobDAST
+    steps:
+    - task: Maven@4
+      inputs:
+        mavenPomFile: 'pom.xml'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
+
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'ServiceConnection'
+        organization: 'aleja613'
+        scannerMode: 'MSBuild'
+        projectKey: 'aleja613_spring-boot-kubernetes'
+        projectName: 'spring-boot-kubernetes'
+
+    - task: Maven@4
+      inputs:
+        mavenPomFile: 'pom.xml'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: true
+        sqMavenPluginVersionChoice: 'latest'
+
+    - task: dependency-check-build-task@6
+      inputs:
+        projectName: 'spring-boot-kubernetes'
+        scanPath: '$(Build.SourcesDirectory)/target'
+        format: 'XML'
