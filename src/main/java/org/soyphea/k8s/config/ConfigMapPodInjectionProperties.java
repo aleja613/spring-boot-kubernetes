@@ -21,9 +21,20 @@ public class ConfigMapPodInjectionProperties {
     String password = "admin";
 }
 
+@Autowired
+public void configureGlobal(AuthenticationManagerBuilder auth, DataSource dataSource) throws Exception {
+  auth.jdbcAuthentication()
+    .dataSource(dataSource)
+    .usersByUsernameQuery("SELECT * FROM users WHERE username = ?")
+    .passwordEncoder(new StandardPasswordEncoder()); // Noncompliant
 
-protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-  String json = "{\"key\":\""+req.getParameter("value")+"\"}";
-  FileOutputStream fos = new FileOutputStream("output.json");
-  fos.write(json.getBytes(Charset.forName("UTF-8")));  // Noncompliant
+  // OR
+  auth.jdbcAuthentication()
+    .dataSource(dataSource)
+    .usersByUsernameQuery("SELECT * FROM users WHERE username = ?"); // Noncompliant; default uses plain-text
+
+  // OR
+  auth.userDetailsService(...); // Noncompliant; default uses plain-text
+  // OR
+  auth.userDetailsService(...).passwordEncoder(new StandardPasswordEncoder()); // Noncompliant
 }
