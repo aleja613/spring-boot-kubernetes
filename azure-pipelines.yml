@@ -63,11 +63,11 @@ stages:
         projectName: 'spring-boot-kubernetes'
         scanPath: '$(Build.SourcesDirectory)/target'
         format: 'XML'
-        reportsDirectory: '$(Build.SourcesDirectory)/Reports'
-        reportFilename: 'dependencyCheckReport.xml'
+        reportsDirectory: 'Reportes'        
     - script: |
-        echo "Archivo de reprote"
-        echo "se encuentra en $(Build.SourcesDirectory)/Reports/dependencyCheckReport.xml"
+        echo "Archivo de reporte"
+        echo "se encuentra en $(Build.SourcesDirectory)/Reportes/dependencyCheckReport.xml"
+      displayName: Script, revisa si existe vulnerabilidad
 
 
 - stage: DAST
