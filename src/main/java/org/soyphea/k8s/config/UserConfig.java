@@ -17,6 +17,6 @@ public class UserConfig {
     String name;
     String blog;
     
-    String user="admin";
-    String password="admin";
+    String user = "admin";
+    String password = "admin";
 }
