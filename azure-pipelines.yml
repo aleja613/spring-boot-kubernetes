@@ -73,9 +73,12 @@ stages:
         datos=($(grep -oP '(?<=CONFIDENCE>)[^<]+' "$(Build.SourcesDirectory)/Reportes/dependency-check-report.xml"))
         for i in ${!datos[*]}
         do
-          echo "$i" "${datos[$i]}"
+          echo "---->>> $i" "${datos[$i]}"
          
         done
+        echo "----------------------largo-------------------"
+        size=${#datos}
+        echo size 
       displayName: Script, revisa si existe vulnerabilidad
 
 
