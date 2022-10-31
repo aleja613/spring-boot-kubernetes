@@ -76,7 +76,7 @@ stages:
           echo "Se detectan vulnerabilidades Altas"            
           #exit 1;
         else:
-          echo "Bien!, no detectan vulnerabilidades"
+          echo "Bien!, no se detectan vulnerabilidades"
         fi;
       displayName: Script, revisa reporte
 
