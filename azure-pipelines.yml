@@ -106,15 +106,15 @@ stages:
 
       - task: Docker@2
         inputs:
-          containerRegistry: 'DockerConn'
+          containerRegistry: 'spring-boot-kubernetes'
           command: 'login'
         displayName: Docker Login
 
       - task: Docker@2
         inputs:
-          containerRegistry: 'DockerConn'
-          command: 'build'
+          containerRegistry: 'spring-boot-kubernetes'
           repository: 'aleja613/spring-boot-kubernetes'
+          command: 'build'
           Dockerfile: '**/Dockerfile'
           tags: 'latest'
         displayName: Image build
@@ -128,7 +128,7 @@ stages:
 
       - task: Docker@2
         inputs:
-          containerRegistry: 'DockerConn'
+          containerRegistry: 'spring-boot-kubernetes'
           repository: 'aleja613/spring-boot-kubernetes'
           command: 'push'
           tags: 'latest'
