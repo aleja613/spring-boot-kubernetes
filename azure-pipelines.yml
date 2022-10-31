@@ -74,7 +74,7 @@ stages:
         if [ $existe -gt 0 ];
         then 
           echo "Se detectan vulnerabilidades Altas"            
-          exit 1;
+          #exit 1;
         else:
           echo "Bien!, no detectan vulnerabilidades"
         fi;
