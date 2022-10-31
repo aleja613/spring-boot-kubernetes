@@ -41,8 +41,7 @@ stages:
       inputs:
         SonarCloud: 'ServiceConnection'
         organization: 'aleja613'
-    displayName: Buildbraker-sonarcloud
-          
+              
 
 - stage: SCA
   displayName: SCA
@@ -86,7 +85,7 @@ stages:
 - stage: DAST
   jobs:
   - job: Job
-    displayName: 'DAST Container'
+    displayName: 'Container security'
     steps:
       - task: Maven@4
         inputs:
