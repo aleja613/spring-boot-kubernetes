@@ -104,7 +104,6 @@ stages:
           dockerVersion: '17.09.0-ce'
         displayName: Installer Docker
 
-
       - task: Docker@2
         inputs:
           containerRegistry: 'DockerConn'
@@ -120,12 +119,11 @@ stages:
           tags: 'latest'
         displayName: Image build
 
-
       - script: |
             sudo apt-get install -y rpm
             wget https://github.com/aquasecurity/trivy/releases/download/v0.27.1/trivy_0.27.1_Linux-64bit.deb
             sudo dpkg -i trivy_0.27.1_Linux-64bit.deb
-            trivy image --exit-code 1 --severity HIGH,CRITICAL murdoko/spring-boot-kubernetes:latest
+            trivy image --exit-code 1 --severity HIGH,CRITICAL aleja613/spring-boot-kubernetes:latest
         displayName: Scan Image Trivi 
 
       - task: Docker@2
